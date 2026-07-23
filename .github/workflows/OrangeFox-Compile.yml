@@ -197,6 +197,7 @@ jobs:
     - name: Building OrangeFox
       run: |
         cd ${GITHUB_WORKSPACE}/OrangeFox/fox_${{ inputs.MANIFEST_BRANCH }}
+        rm -rf vendor/twrp/build/soong/generator
         set +e
         export FOX_BUILD_DEVICE=${{ inputs.DEVICE_NAME }}
         if [[ ${{ inputs.USE_CCACHE }} == true ]]; then
