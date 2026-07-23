@@ -171,6 +171,7 @@ jobs:
         git clone -b android-14.0 https://github.com/omnirom/android_vendor_omni.git vendor/omni
         git clone https://github.com/ssundeeheydarpour-oss/android_device_samsung_exynos7580-common.git device/samsung/exynos7580-common
         git clone https://github.com/TheMuppets/proprietary_vendor_samsung.git -b lineage-18.1 vendor/samsung
+        git clone -b android-14 https://github.com/TeamWin/android_bootable_recovery.git -b twrp-12.1 vendor/twrp
         cd ${{ inputs.DEVICE_PATH }}
         echo "COMMIT_ID=$(git rev-parse HEAD)" >> $GITHUB_ENV
 
@@ -197,7 +198,6 @@ jobs:
     - name: Building OrangeFox
       run: |
         cd ${GITHUB_WORKSPACE}/OrangeFox/fox_${{ inputs.MANIFEST_BRANCH }}
-        rm -rf vendor/twrp/build/soong/generator
         set +e
         export FOX_BUILD_DEVICE=${{ inputs.DEVICE_NAME }}
         if [[ ${{ inputs.USE_CCACHE }} == true ]]; then
