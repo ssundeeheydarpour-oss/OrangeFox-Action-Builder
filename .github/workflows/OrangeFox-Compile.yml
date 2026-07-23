@@ -20,7 +20,7 @@ on:
       DEVICE_TREE:
         description: 'OrangeFox Device Tree'
         required: true
-        default: 'ssundeeheydarpour-oss/android_device_samsung_a5xelte'
+        default: 'https://github.com/ssundeeheydarpour-oss/android_device_samsung_a5xelte'
       DEVICE_TREE_BRANCH:
         description: 'OrangeFox Device Tree Branch'
         required: true
