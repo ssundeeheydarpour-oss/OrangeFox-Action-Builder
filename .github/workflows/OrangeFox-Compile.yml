@@ -218,7 +218,7 @@ jobs:
         fi
         
     - name: Prepare OrangeFox image
-       run: |
+    run: |
         cp $(find OrangeFox/fox_${{ inputs.MANIFEST_BRANCH }}/out -name "recovery.img" | head -n 1) OrangeFox/fox_${{ inputs.MANIFEST_BRANCH }}/OrangeFox-${{ inputs.DEVICE_NAME }}.img
         
     - name: Set Release Properties
