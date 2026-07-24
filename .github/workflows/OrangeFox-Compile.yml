@@ -73,6 +73,13 @@ jobs:
     steps:
     - name: Clean-up
       uses: rokibhasansagar/slimhub_actions@main
+      - name: Show output directory
+        run: |
+          echo "=== Product directory ==="
+            ls -R OrangeFox/fox_${{ inputs.MANIFEST_BRANCH }}/out/target/product || true
+
+              echo "=== Search for images ==="
+             find OrangeFox/fox_${{ inputs.MANIFEST_BRANCH }}/out -type f \( -name "*.img" -o -name "*.tar" -o -name "*.zip" \)
 
     - name: Build Environment
       run: |
