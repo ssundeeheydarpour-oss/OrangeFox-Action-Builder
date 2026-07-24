@@ -216,7 +216,11 @@ jobs:
         else
         lunch omni_${{ inputs.DEVICE_NAME }}-eng && make clean && mka adbd ${{ inputs.BUILD_TARGET }}image
         fi
-
+        
+    - name: Prepare OrangeFox image
+       run: |
+        cp $(find OrangeFox/fox_${{ inputs.MANIFEST_BRANCH }}/out -name "recovery.img" | head -n 1) OrangeFox/fox_${{ inputs.MANIFEST_BRANCH }}/OrangeFox-${{ inputs.DEVICE_NAME }}.img
+        
     - name: Set Release Properties
       run: |
         echo "BUILD_DATE=$(TZ=Asia/Shanghai date +%Y%m%d)" >> $GITHUB_ENV
@@ -232,7 +236,7 @@ jobs:
       uses: softprops/action-gh-release@master
       with:
         files: |
-          OrangeFox/fox_${{ inputs.MANIFEST_BRANCH }}/out/target/product/${{ inputs.DEVICE_NAME }}/OrangeFox*.img
+          OrangeFox/fox_${{ inputs.MANIFEST_BRANCH }}/OrangeFox-${{ inputs.DEVICE_NAME }}.img
           OrangeFox/fox_${{ inputs.MANIFEST_BRANCH }}/out/target/product/${{ inputs.DEVICE_NAME }}/OrangeFox*.zip
         name: OrangeFox Recovery for ${{ inputs.DEVICE_NAME }} // ${{ env.BUILD_DATE }}
         tag_name: ${{ github.run_id }}
